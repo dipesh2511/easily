@@ -1,0 +1,78 @@
+<div id="joblist-main-container" class="container-fluid d-flex justify-content-center">
+    <div id="job-post-container" class="row mt-3 d-flex justify-content-around">
+        
+        
+        <h1 class="fs-1 text-center fw-bold font-monospace heading-colors" style="height: 40px;"><%=postHeading%></h1>
+        <%postLists.forEach((post)=>{%>
+        <div class="job-post-card mb-2 col-xs-8 mt-xs-2 mb-xs-2 col-sm-8 mt-sm-2 mb-sm-2 col-lg-3 mx-lg-5 mt-lg-5 ">
+            <div class="row activelyhiring-container mx-1 mt-3">
+                <div class="activelyhiring d-flex justify-content-start align-items-center p-0">
+                    <div class="col-9 m-1">
+                        <p class="m-0 fs-6 fw-lighter text-white d-flex align-items-center justify-content-start">Actively
+                            Hiring
+                        <span class="ms-2 fs-6 text-white d-flex align-items-center justify-content-start">
+                            <i class="fa-solid fa-chart-line"></i>
+                        </span>
+                        </p>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="row col-12 companyName-container p-0">
+                <div class="companyName d-flex justify-content-start align-items-center">
+                    <div class="col-12 m-1">
+                        <p class="m-0 fs-4 fw-normal d-flex align-items-center justify-content-start"><%=post.jobCompany%></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row jobType-container col-12 p-0">
+                <div class="jobType d-flex justify-content-center align-items-center">
+                    <div class="col-12 m-1">
+                        <p class="m-0 fs-5 fw-normal text-white d-flex align-items-center justify-content-start">
+                            <%=post.jobCategory%><span class="mx-2 fs-5 fw-lighter text-white"> <%=post.jobDesignation%> </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row jobLocation-container col-12 p-0">
+                <div class="jobLocation d-flex justify-content-center align-items-center">
+                    <div class="col-12 m-1">
+                        <p class="m-0 fs-6 fw-normal text-white d-flex align-items-center justify-content-start">
+                            <span class="me-2 fs-6 fw-lighter text-white">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span> <%=post.jobLocation%>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row jobSalary-container col-12 p-0">
+                <div class="jobSalary d-flex justify-content-center align-items-center">
+                    <div class="col-12 m-1">
+                        <p class="m-0 fs-6 fw-normal text-white d-flex align-items-center justify-content-start"> <%=post.jobSalary%>
+                            <span class="mx-2 fs-6 fw-lighter text-white"> Rupees </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="row jobSkills-container col-11 mx-auto">
+                <div class="col-12 d-flex justify-content-start align-items-center flex-wrap">
+                    <!-- Put foreach loop here for dynamic job posts -->
+                    <%let skillArray = post.jobSkills;%>
+                    <%skillArray.forEach((skill)=>{%>
+                        <div class="jobSkills m-1 px-2">
+                            <p class="m-0 align-items-center justify-content-center"><%=skill%></p>
+                        </div>
+                    <%})%>
+
+                </div>
+            </div>
+            <div class="row col-12 mx-auto">
+                <a class="btn btn-style col-12" href="/jobpost/<%=post.pid%>" >
+                    View Details
+                </a>
+            </div>
+        </div>
+  <%})%>
+
+    </div>
+</div>

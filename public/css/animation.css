@@ -1,0 +1,49 @@
+#rotatingtext-container {
+    display: block;
+    position: relative;
+}
+
+#rotatingtext {
+    color: white;
+}
+
+#rotatingtext::before {
+    display: block;
+    content: "";
+    height: 40px;
+    width: 0%;
+    opacity: 0;
+    background-color: #181642;
+    position: absolute;
+    z-index: 1;
+    animation: track 6s ease-in-out infinite normal forwards;
+}
+
+@media (max-width:1132px) {
+    #rotatingtext::before {
+        height: 45px;
+    }   
+}
+@media (max-width:1070px) {
+    #rotatingtext::before {
+        height: 60px;
+    }   
+}
+
+@keyframes track {
+    0% {
+        width: 0%;
+        opacity: 0.1;
+    }
+    50% {
+        width: 50%;
+        opacity: 0.5;
+
+    }
+    100% {
+        width: 80%;
+        opacity: 1;
+
+    }
+
+}

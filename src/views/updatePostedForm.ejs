@@ -1,0 +1,74 @@
+<main>
+    <div id="newform-container" class="container-fluid">
+        <div id="newform-main-background" class="col-12 d-flex align-items-center justify-content-center">
+            <div id="newform-form-container" class="row d-flex align-items-center">
+                <div id="newform-main-container" class="col-12 p-3">
+                    <form action="/jobpost/<%=formUpdate.pid%>/update" method="post"
+                        class="col-12 d-flex flex-wrap justify-content-center align-items-center">
+                        <h1 class="fs-1 mb-4 fw-lighter heading-colors font-monospace">Post A New Job</h1>
+                        <input name="uid" type="text" hidden value="<%=user.uid%>">
+                        <input name="pid" type="text" hidden value="<%=formUpdate.pid%>">
+                        <input name="u_name" type="text" hidden value="<%=user.name%>">
+                        <div class="col-12 mb-2">
+                            <label for="inputAddress" class="form-label">Enter Company's Name</label>
+                            <input value="<%=formUpdate.jobCompany%>" name="jobCompany" type="text" class="form-control" id="inputAddress" placeholder="Eg:-Infosys,Tcs">
+                        </div>
+                        <select name="jobCategory" class="col-12 form-select mb-2" aria-label="Default select example">
+                            <option selected>Select Job Category</option>
+                            <option value="tech"  <%= formUpdate.jobCategory === 'tech' ? 'selected' : '' %>>Tech</option>
+                            <option value="nontech" <%= formUpdate.jobCategory === 'nontech' ? 'selected' : '' %>>Non Tech</option>
+                        </select>
+                        <select name="jobDesignation" class="col-12 form-select mb-2" aria-label="Default select example">
+                            <option selected disabled>Select Job Desgination</option>
+                            <option value="HR" <%= formUpdate.jobDesignation === 'HR' ? 'selected' : '' %>>HR</option>
+                            <option value="SDE" <%= formUpdate.jobDesignation === 'SDE' ? 'selected' : '' %>>SDE</option>
+                            <option value="DevOps" <%= formUpdate.jobDesignation === 'DevOps' ? 'selected' : '' %>>DevOps</option>
+                            <option value="MERN Developer" <%= formUpdate.jobDesignation === 'MERN Developer' ? 'selected' : '' %>>MERN Developer</option>
+                            <option value="MEAN Developer" <%= formUpdate.jobDesignation === 'MEAN Developer' ? 'selected' : '' %>>MEAN Developer</option>
+                            <option value="JAVA Developer" <%= formUpdate.jobDesignation === 'JAVA Developer' ? 'selected' : '' %>>JAVA Developer</option>
+                            <option value="Front-End Developer" <%= formUpdate.jobDesignation === 'Front-End Developer' ? 'selected' : '' %>>Front-End Developer</option>
+                            <option value="Back-End Developer" <%= formUpdate.jobDesignation === 'Back-End Developer' ? 'selected' : '' %>>Back-End Developer</option>
+                            <option value="Full-Stack Developer" <%= formUpdate.jobDesignation === 'Full-Stack Developer' ? 'selected' : '' %>>Full-Stack Developer</option>
+                        </select>
+                        <div class="col-12 mb-2">
+                            <label for="inputAddress" class="form-label">Enter Job Location</label>
+                            <input value="<%=formUpdate.jobLocation%>" name="jobLocation" type="text" class="form-control" id="inputAddress" placeholder="Eg:-Pune,Mumbai">
+                        </div>
+                        <div class="mb-2 col-sm-12 col-md-6">
+                            <label for="inputAddress" class="form-label">Enter Salay in Rupees</label>
+                            <input value="<%=formUpdate.jobSalary%>" name="jobSalary" type="number" class="form-control" id="inputAddress" placeholder="100000">
+                        </div>
+                        <div class="mb-2 col-sm-12 col-md-6">
+                            <label for="inputAddress" class="form-label">Number Of Position</label>
+                            <input value="<%=formUpdate.jobPosition%>" name="jobPosition" type="number" class="form-control" id="inputAddress" placeholder="1~10">
+                        </div>
+                        <div class="col-md-12 col-lg-6 mb-2">
+                            <select name="jobSkills" class="form-select" multiple aria-label="Multiple select example">
+                                <option disabled>Select Skills Required For The Job</option>
+                                <option value="React">React</option>
+                                <option value="Node">Node</option>
+                                <option value="Express">Express</option>
+                                <option value="Angular">Angular</option>
+                                <option value="MongoDb">MongoDb</option>
+                                <option value="Java">Java</option>
+                                <option value="Spring Boot">Spring Boot</option>
+                                <option value="C++">C++</option>
+                                <option value="Data Structure & Algo">Data Structure & Algo</option>
+                            </select>
+                        </div>
+                        <div class="mb-2 col-md-12 col-lg-6">
+                            <div class="input-group flex-nowrap">
+                                <span class="input-group-text" id="addon-wrapping">Apply By</span>
+                                <input value="<%=formUpdate.jobApplyBy%>" name="jobApplyBy" type="date" class="form-control" aria-label="Username"
+                                    aria-describedby="addon-wrapping">
+                            </div>
+                        </div>
+                        <div class="col-12 mb-2">
+                            <button style="width: 100%;" class="btn btn-style" type="submit">Submit form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

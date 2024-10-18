@@ -1,0 +1,30 @@
+<div class="box container-fluid main-bg d-flex">
+    <div class="row m-4" style="width: 80%;">
+        <table id="table-container" class="table table-light table-hover">
+            <thead>
+                <tr>
+                  <th scope="col">applicant id</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Phone No.</th>
+                  <th scope="col">Resume</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%applicantDetails.forEach((applicant)=>{%>
+                    <tr>
+                      <th scope="row"><%=applicant.applicantid%></th>
+                      <td><%=applicant.applicantName%></td>
+                      <td><%=applicant.applicantEmail%></td>
+                      <td><%=applicant.applicantPhoneNo%></td>
+                      <td>
+                         <a class="m-2 btn btn-primary" target="_blank" href="/resume/<%=applicant.applicantResume%>">
+                             Resume
+                         </a>
+                       </td>
+                    </tr>
+                <%})%>
+              </tbody>
+        </table>
+    </div>
+</div>

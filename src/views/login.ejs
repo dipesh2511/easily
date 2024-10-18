@@ -1,0 +1,36 @@
+<main>
+    <div id="login-container" class="container-fluid">
+        <div id="login-main-background" class="col-12 d-flex align-items-center justify-content-center">
+            <div id="login-form-container" class="row d-flex align-items-center">
+                <div id="login-image-container" class="col-12 d-flex justify-content-center align-items-center">
+                    <div id="login-image-circle" class="login-image-keeper">
+                        <img id="imageChanger" src="./images/normalkid.webp" alt="">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <form action="/login" method="post" class="col-12 d-flex flex-wrap justify-content-center align-items-center">
+                        <%if(loginMsg){%>
+                            <div class="alert alert-danger col-10" role="alert">
+                                <%=loginMsg%> 
+                            </div>
+                        <%}%>
+
+                        <div class="form-floating col-10 mb-3">
+                            <input type="email" class="form-control" id="floatingInput"
+                                placeholder="name@example.com" name="email">
+                            <label for="floatingInput">Email address</label>
+                        </div>
+                        <div class="form-floating col-10 mb-4">
+                            <input type="password" class="form-control" id="floatingPassword"
+                                placeholder="Password" name="password">
+                            <label for="floatingPassword">Password</label>
+                        </div>
+                        <div class="col-10 mb-3">
+                            <button class="btn btn-style" type="submit">Login</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
