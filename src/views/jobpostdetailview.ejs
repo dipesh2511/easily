@@ -1,187 +1,134 @@
 <div id="detailview-main-container" class="container-fluid main-bg d-flex justify-content-center align-items-start">
-    <div id="detailview-container" class="row justify-content-center align-items-start">
-        <div class=" d-none d-sm-block col-12 row detailview-image-main-container p-0">
-            <div class="col-12 detailview-image-container p-0"></div>
+    <div id="detailview-container" class="row justify-content-center align-items-start w-100">
+        <!-- Job Image (Visible on larger screens) -->
+        <div class="col-12 d-none d-sm-block detailview-image-main-container p-0">
+            <div class="detailview-image-container w-100"></div>
         </div>
-        <div class="col-12 row p-0 m-0 mt-3 mb-3">
-            <h1 class="fs-1 col-12 heading-colors text-center">
-                <%=jobPost.jobDesignation%> oppertunity in <%=jobPost.jobLocation%> IND REMOTE at
-                        <%=jobPost.jobCompany%>
+
+        <!-- Job Title -->
+        <div class="col-12 text-center mt-3 mb-3">
+            <h1 class="fs-2 fw-bold heading-colors">
+                <%= jobPost.jobDesignation %> Opportunity in <%= jobPost.jobLocation %> (Remote) at
+                <%= jobPost.jobCompany %>
             </h1>
         </div>
-        <div class="col-12 row p-0 m-0 ms-5">
-            <h1 class="fs-5 col-12">
-                <%=jobPost.jobCompany%>
-            </h1>
+
+        <!-- Company Info -->
+        <div class="col-12 ms-5">
+            <h3 class="fw-bold"><%= jobPost.jobCompany %></h3>
+            <p class="fs-6"><i class="fa-solid fa-briefcase"></i> <%= jobPost.jobDesignation %></p>
+            <p class="fs-6"><i class="fa-solid fa-location-dot"></i> <%= jobPost.jobLocation %></p>
+            <p class="fs-6"><i class="fa-solid fa-indian-rupee-sign"></i> <%= jobPost.jobSalary %></p>
+            <p class="fs-6"><i class="fa-solid fa-hourglass-start"></i> Apply By: <%= jobPost.jobApplyBy %></p>
+            <p class="fs-6"><i class="fa-solid fa-chart-simple"></i> Openings: <%= jobPost.jobPosition %></p>
         </div>
-        <div class="col-12 row p-0 m-0 ms-5">
-            <h1 class="fs-6 col-12">Tech <span class="lighttext-theme">
-                    <%=jobPost.jobDesignation%>
-                </span></h1>
-        </div>
-        <div class="col-12 row p-0 m-0 ms-5">
-            <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-location-dot"></i><span class="ms-2 lighttext-theme">
-                    <%=jobPost.jobLocation%>
-                </span></h1>
-        </div>
-        <div class="col-12 row p-0 m-0 ms-5">
-            <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-indian-rupee-sign"></i><span class="ms-2 lighttext-theme">
-                    <%=jobPost.jobSalary%>
-                </span></h1>
-        </div>
-        <div class="col-12 row p-0 m-0 ms-5">
-            <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-hourglass-start"></i><span
-                    class="ms-2 lighttext-theme">Apply By <%=jobPost.jobApplyBy%></span></h1>
-        </div>
-        <div class="col-12 row p-0 m-0 ms-5">
-            <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-chart-simple"></i><span
-                    class="ms-2 lighttext-theme">Number Of Openings <%=jobPost.jobPosition%></span></h1>
-        </div>
-        <div class="col-12 row p-0 m-0 ms-5">
-            <h1 class="fs-6 col-12 m-0">
-                <i class="fa fa-user-friends"></i>
-                <span class="ms-1 lighttext-theme">
-                    <%=jobPost.jobApplicants.length%>
+
+        <!-- Applicants Info -->
+        <div class="col-12 ms-5">
+            <h3 class="fs-6">
+                <i class="fa fa-user-friends"></i> <span class="ms-1 lighttext-theme">
+                    <%= jobPost.jobApplicants.length %>
                 </span>
-                <%if(user && jobPost.uid==user.uid){%>
-                    <span>
-                        <a class="m-2 btn btn-primary" href="/jobpost/<%=jobPost.pid%>/applicant"> view </a>
-                    </span>
-                    <%}else if(user && jobPost.uid !=user.uid){%>
-                        <span class="lighttext-theme"> Can't View Posted by other Recruiter </span>
-                        <%}else{%>
-                            <span class="lighttext-theme"> Applied </span>
-                            <%}%>
-            </h1>
+                <% if(user && jobPost.uid === user.uid) { %>
+                    <a class="btn btn-primary ms-2" href="/jobpost/<%= jobPost.pid %>/applicant">View Applicants</a>
+                <% } else if(user) { %>
+                    <span class="text-muted">Can't view - Posted by another recruiter</span>
+                <% } else { %>
+                    <span class="text-muted">Applied</span>
+                <% } %>
+            </h3>
         </div>
-        <div class="col-12 row p-0 m-0 ms-5 mt-3 mb-3">
-            <h1 class="fs-6 col-12">Skills Required</h1>
-            <div class="col-12 row ms-1">
-                <!-- created for each loop here -->
-                <%let skills = jobPost.jobSkills;%>
-                <%skills.forEach((skill)=>{%>
-                    <div class="detailview-skills m-1 lighttext-theme">
-                        <h6 class="m-0 p-0 ">
-                            <%=skill%>
-                        </h6>
-                    </div>
-                <%})%>
+
+        <!-- Skills Required -->
+        <div class="col-12 ms-5 mt-3 mb-3">
+            <h3 class="fs-6">Skills Required</h3>
+            <div class="d-flex flex-wrap gap-2">
+                <% jobPost.jobSkills.forEach((skill) => { %>
+                    <span class="badge bg-secondary px-3 py-2"><%= skill %></span>
+                <% }) %>
             </div>
         </div>
-        <div class="col-12 row p-0 m-0 ms-5 mb-5">
-            <%if(user && jobPost.uid==user.uid){%>
-                <button type="button" class="col-xs-6 col-sm-4 col-lg-3 col-xl-2 btn btn-style p-2 m-2 ms-3"
-                    data-bs-toggle="modal" data-bs-target="#exampleModal1"> Delete Job Post </button>
-                <a class="col-xs-6 col-sm-4 col-lg-3 col-xl-2 btn btn-success p-2 m-2 ms-3"
-                    href="/jobpost/<%=jobPost.pid%>/update"> Update Post </a>
-                <%}else if(user && jobPost.uid !=user.uid){%>
-                    <div class="alert alert-primary p-2 m-2 ms-3" role="alert" style="width: auto;"> posted by
-                        <%=jobPost.u_name%>
-                    </div>
-                    <%}else{%>
-                        <button class="col-xs-6 col-sm-4 col-lg-3 col-xl-2 btn btn-primary p-2 m-2 ms-3"
-                            data-bs-toggle="modal" data-bs-target="#exampleModal">Apply Now</button>
-                        <%}%>
+
+        <!-- Job Actions -->
+        <div class="col-12 d-flex flex-wrap justify-content-start ms-5 mb-5">
+            <% if(user && jobPost.uid === user.uid) { %>
+                <button class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                <a class="btn btn-success" href="/jobpost/<%= jobPost.pid %>/update">Update</a>
+            <% } else if(user) { %>
+                <div class="alert alert-primary p-2 w-50 text-center" role="alert">
+                    Posted by <%= jobPost.u_name %>
+                </div>
+            <% } else { %>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#applyModal">Apply Now</button>
+            <% } %>
         </div>
+        
     </div>
 </div>
-<!-- Modal for applicant to fill form-->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Apply Modal -->
+<div class="modal fade" id="applyModal" tabindex="-1" aria-labelledby="applyModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Applicant Form</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title fw-bold" id="applyModalLabel">Apply for <%= jobPost.jobDesignation %></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <form action="/jobpost/<%=jobPost.pid%>" method="post" enctype="multipart/form-data">
-                    <input name="uid" type="text" hidden value="<%=jobPost.uid%>">
-                    <input name="pid" type="text" hidden value="<%=jobPost.pid%>">
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Name</span>
-                        <div class="form-floating">
-                            <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Username"
-                                name="applicantName">
-                            <label for="floatingInputGroup1">Applicant Name</label>
-                        </div>
+                <form action="/jobpost/<%= jobPost.pid %>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="uid" value="<%= jobPost.uid %>">
+                    <input type="hidden" name="pid" value="<%= jobPost.pid %>">
+
+                    <div class="mb-3">
+                        <label class="form-label">Applicant Name</label>
+                        <input type="text" class="form-control" name="applicantName" required>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Enter Email</span>
-                        <div class="form-floating">
-                            <input type="email" class="form-control" id="floatingInputGroup1"
-                                placeholder="xyz@example.com" name="applicantEmail">
-                            <label for="floatingInputGroup1">Applicant Email</label>
-                        </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-control" name="applicantEmail" required>
                     </div>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">Contact</span>
-                        <div class="form-floating">
-                            <input type="tel" class="form-control" id="floatingInputGroup1" placeholder="+91-9993683199"
-                                name="applicantPhoneNo" value="+91-">
-                            <label for="floatingInputGroup1">Applicant Number</label>
-                        </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" name="applicantPhoneNo" value="+91-" required>
                     </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="inputGroupFile01">Upload Resume</label>
-                        <input type="file" class="form-control" id="inputGroupFile01" name="applicantResume"
-                            accept="application/pdf">
+
+                    <div class="mb-3">
+                        <label class="form-label">Upload Resume (PDF)</label>
+                        <input type="file" class="form-control" name="applicantResume" accept="application/pdf" required>
                     </div>
-                    <div class="input-group mb-3">
-                        <div class="col-12">
-                            <button class="btn btn-style" type="submit">Apply</button>
-                        </div>
-                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Apply</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<!-- modal for delete confirmation -->
-<%if(user && jobPost.uid==user.uid){%>
-<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- Delete Confirmation Modal -->
+<% if(user && jobPost.uid === user.uid) { %>
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Sure you want to Delete this post</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title fw-bold" id="deleteModalLabel">Confirm Delete</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
-                <div class="col-12 row p-0 m-0 ms-5">
-                    <h1 class="fs-5 col-12">
-                        <%=jobPost.jobCompany%>
-                    </h1>
-                </div>
-                <div class="col-12 row p-0 m-0 ms-5">
-                    <h1 class="fs-6 col-12">Tech <span class="lighttext-theme">
-                            <%=jobPost.jobDesignation%>
-                        </span></h1>
-                </div>
-                <div class="col-12 row p-0 m-0 ms-5">
-                    <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-location-dot"></i><span
-                            class="ms-2 lighttext-theme">
-                            <%=jobPost.jobLocation%>
-                        </span></h1>
-                </div>
-                <div class="col-12 row p-0 m-0 ms-5">
-                    <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-indian-rupee-sign"></i><span
-                            class="ms-2 lighttext-theme">
-                            <%=jobPost.jobSalary%>
-                        </span></h1>
-                </div>
-                <div class="col-12 row p-0 m-0 ms-5">
-                    <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-hourglass-start"></i><span
-                            class="ms-2 lighttext-theme">Apply By <%=jobPost.jobApplyBy%></span></h1>
-                </div>
-                <div class="col-12 row p-0 m-0 ms-5">
-                    <h1 class="fs-6 col-12 m-0"><i class="fa-solid fa-chart-simple"></i><span
-                            class="ms-2 lighttext-theme">Number Of Openings <%=jobPost.jobPosition%></span></h1>
-                </div>
+                <p>Are you sure you want to delete this job post?</p>
+                <ul class="list-unstyled">
+                    <li><strong>Company:</strong> <%= jobPost.jobCompany %></li>
+                    <li><strong>Position:</strong> <%= jobPost.jobDesignation %></li>
+                    <li><strong>Location:</strong> <%= jobPost.jobLocation %></li>
+                    <li><strong>Salary:</strong> <%= jobPost.jobSalary %></li>
+                </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Cancel</button>
-                <button id="deleteConfirmation" class="btn btn-style" data-url='/jobpost/<%=jobPost.pid%>/delete' data-user="<%=user.uid%>"> Confirm </button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button id="deleteConfirmation" class="btn btn-danger" data-url='/jobpost/<%= jobPost.pid %>/delete'>Confirm</button>
             </div>
-         </div>
+        </div>
     </div>
 </div>
-<%}%>
+<% } %>

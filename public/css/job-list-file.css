@@ -139,3 +139,43 @@
     color:black;
     font-weight: bolder;
 }
+@media (max-width: 576px) {
+    .job-post-card {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 992px) {
+    .job-post-card {
+        width: 45%;
+        margin: 10px auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .job-post-card {
+        width: 30%;
+    }
+}
+
+/* Ensure text wraps and aligns properly */
+.jobType-container p, .companyName-container p, .jobLocation-container p, .jobSalary-container p {
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+/* Skills section should wrap properly */
+.jobSkills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+/* Make buttons take full width on small screens */
+@media (max-width: 576px) {
+    .btn-style {
+        width: 100%;
+        text-align: center;
+    }
+}

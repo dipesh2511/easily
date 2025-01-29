@@ -19,8 +19,8 @@ const users = [
     },
     {
         uid: 'user4',
-        name: 'Himanshu',
-        email: 'himanshu@gmail.com',
+        name: 'Anjali',
+        email: 'anjali@gmail.com',
         password: '121212'
     },
     {

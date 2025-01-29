@@ -14,6 +14,7 @@ import { upload } from "./src/middleware/multer.middleware.js"
 import updateAuth from "./src/middleware/restrictupdate/delete.middleware.js"
 // all variables
 let server = express();
+
 let userlogincontroller = new UserLoginController();
 let userregistercontroller = new UserRegisterController();
 let jobcontroller = new JobController();
@@ -25,6 +26,7 @@ let applicantcontroller = new ApplicantController();
 server.use(express.static(path.join(path.resolve(), 'public')));
 // for the resume 
 server.use('/resume',express.static(path.join(path.resolve(),'public','resume')));
+
 server.use(session({
     secret: "secretkey",
     resave: false,
