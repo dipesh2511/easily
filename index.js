@@ -91,5 +91,7 @@ server.post('/jobpost/:pid',upload.single('applicantResume'), applicantcontrolle
 server.get('/jobpost/:pid/applicant',updateAuth,applicantcontroller.renderApplicantList);
 
 
-export default server;
 
+server.listen(2106, () => {
+    console.log('server is listning on 2106')
+})
